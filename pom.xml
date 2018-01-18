@@ -4,7 +4,7 @@
 
 	<groupId>tw.com.fstop</groupId>
 	<artifactId>fstop-ms-backend</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>fstop-ms-backend</name>
@@ -53,7 +53,7 @@
   	  <connection>scm:git:git@github.com:andy-udp-ip/fstop-ms-backend.git</connection>
   	  <url>scm:git:git@github.com:andy-udp-ip/fstop-ms-backend.git</url>
   	  <developerConnection>scm:git:git@github.com:andy-udp-ip/fstop-ms-backend.git</developerConnection>
-      <tag>v1.0.0</tag>
+      <tag>HEAD</tag>
     </scm>    
 
 	<distributionManagement>
