@@ -22,7 +22,7 @@ import org.springframework.data.mongodb.repository.Query;
 
 import tw.com.fstop.app.mongodb.entity.User;
 
-public interface UserRepository extends MongoRepository<User, String>
+public interface UserRepository extends MongoRepository<User, String>, CustomUserRepository
 {
     User findByFirstName(String firstName);
 
