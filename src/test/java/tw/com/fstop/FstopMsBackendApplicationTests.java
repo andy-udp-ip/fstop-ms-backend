@@ -66,8 +66,8 @@ public class FstopMsBackendApplicationTests
         assertNotNull(p);
         
         ObjectMapper mapper = new ObjectMapper();
-        String jsonInString = mapper.writeValueAsString(p);
-        System.out.println(">>>>>>>>>>>>>>>>>>>"+jsonInString);
+        String json = mapper.writeValueAsString(p);
+        System.out.println(">>>>>>>>>>>>>>>>>>>"+json);
         
         user = userRepository.findUserByUidAndUidSeq(uid, uidSeq);
         assertNotNull(user);
