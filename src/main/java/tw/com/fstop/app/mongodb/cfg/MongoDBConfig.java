@@ -81,7 +81,7 @@ public class MongoDBConfig
 
     private static MongodExecutable mongodExecutable = null;
     
-    private static MongodProcess mongodProcess = null;
+    //private static MongodProcess mongodProcess = null;
 
     private MongoClient client = null;
     
@@ -91,7 +91,8 @@ public class MongoDBConfig
     @Autowired(required = false)
     private MongoClientOptions options;
 
-
+    
+//會有錯誤
 //    @Bean(destroyMethod = "close")
 //    public Mongo mongo(MongodProcess mongodProcess) throws IOException
 //    {
@@ -105,7 +106,7 @@ public class MongoDBConfig
     @Bean(destroyMethod = "close")
     public Mongo mongo(MongoClient mongoClient) throws IOException
     {
-        System.out.println("=========================mongo================================");
+        //System.out.println("=========================mongo================================");
         client = mongoClient;
         return client;
     }
@@ -124,7 +125,7 @@ public class MongoDBConfig
     @Bean(name = "mongoClient", destroyMethod = "close")
     public MongoClient mongoClient() throws IOException
     {
-        System.out.println("=========================mongoClient================================");
+        //System.out.println("=========================mongoClient================================");
 
         Integer port = Integer.parseInt(this.port);
         List<ServerAddress> seeds = new ArrayList<>();
@@ -175,7 +176,7 @@ public class MongoDBConfig
     @Bean(name = "mongoDbFactory")
     public MongoDbFactory mongoDbFactory(MongoClient mongoClient)
     {
-        System.out.println("=========================mongoDbFactory================================");
+        //System.out.println("=========================mongoDbFactory================================");
         return new SimpleMongoDbFactory(mongoClient, dbName);
     }
 
@@ -183,11 +184,11 @@ public class MongoDBConfig
     @Bean(name = "mongoTemplate")
     public MongoTemplate mongoTemplate(MongoClient mongoClient)
     {
-        System.out.println("=========================mongoTemplate================================");
+        //System.out.println("=========================mongoTemplate================================");
         return new MongoTemplate(mongoClient, dbName);
     }
 
-// 不需要 start 否則會重複執行
+// 本來是需要 start，但是實際上不需要 start 否則會重複執行
 //    @Bean(destroyMethod = "stop")
 //    public MongodProcess mongodProcess(MongodExecutable embeddedMongoServer) throws IOException
 //    {
@@ -204,7 +205,7 @@ public class MongoDBConfig
     public MongodExecutable embeddedMongoServer(MongodStarter mongodStarter, IMongodConfig mongodConfig) throws IOException
     {
         //MongodStarter mongodStarter = getMongodStarter(this.runtimeConfig);
-        System.out.println("=========================embeddedMongoServer================================");
+        //System.out.println("=========================embeddedMongoServer================================");
         if (mongodExecutable == null)
         {
             mongodExecutable = mongodStarter.prepare(mongodConfig);   
@@ -216,7 +217,7 @@ public class MongoDBConfig
     @Bean
     public IMongodConfig mongodConfig() throws IOException
     {
-        System.out.println("=========================mongodConfig================================");
+        //System.out.println("=========================mongodConfig================================");
         Integer p = Integer.parseInt(port);
         IMongodConfig mongodConfig = new MongodConfigBuilder().version(Version.Main.PRODUCTION)
                 .net(new Net(host, p, Network.localhostIsIPv6())).build();
@@ -226,14 +227,14 @@ public class MongoDBConfig
     @Bean
     public MongodStarter mongodStarter()
     {
-        System.out.println("=========================mongodStarter================================");
+        //System.out.println("=========================mongodStarter================================");
         return MongodStarter.getDefaultInstance();
     }
 
     @PreDestroy
     public void shutdownEmbeddedMongoDB()
     {
-        System.out.println("=========================shutdownEmbeddedMongoDB================================");
+        //System.out.println("=========================shutdownEmbeddedMongoDB================================");
         if (this.mongodExecutable != null)
         {
             this.mongodExecutable.stop();
