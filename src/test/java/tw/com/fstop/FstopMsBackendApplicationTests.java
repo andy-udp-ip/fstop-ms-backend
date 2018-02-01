@@ -66,7 +66,7 @@ public class FstopMsBackendApplicationTests
         assertNotNull(p);
         
         ObjectMapper mapper = new ObjectMapper();
-        String json = mapper.writeValueAsString(p);
+        String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(p);
         System.out.println(">>>>>>>>>>>>>>>>>>>"+json);
         
         user = userRepository.findUserByUidAndUidSeq(uid, uidSeq);
