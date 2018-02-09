@@ -1,0 +1,7 @@
+FROM java:8
+RUN sh -c 'mkdir -p /ap/pgm'
+RUN sh -c 'mkdir -p /ap/log'
+ENV LOG_HOME /ap/log 
+ADD *.jar /ap/pgm/
+CMD ["/bin/sh"]
+

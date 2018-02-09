@@ -2,6 +2,8 @@ package tw.com.fstop;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -16,6 +18,7 @@ import tw.com.fstop.app.spring.repository.UserRepository;
 @SpringBootApplication
 public class FstopMsBackendApplication implements CommandLineRunner
 {
+    private static final Logger log = LoggerFactory.getLogger(FstopMsBackendApplication.class);
 
     @Autowired
     private UserRepository repository;
@@ -47,35 +50,35 @@ public class FstopMsBackendApplication implements CommandLineRunner
         this.repository.save(new User("A234567890", "6", "Angel6", "Smith"));
 
         // fetch all customers
-        System.out.println("User found with findAll():");
-        System.out.println("-------------------------------");
+        log.debug("User found with findAll():");
+        log.debug("-------------------------------");
         for (User user : this.repository.findAll())
         {
-            System.out.println(user);
+            log.debug("" + user);
         }
-        System.out.println();
+        log.debug("");
 
         // fetch an individual customer
-        System.out.println("User found with findByFirstName('Andy'):");
-        System.out.println("--------------------------------");
-        System.out.println(this.repository.findByFirstName("Andy"));
+        log.debug("User found with findByFirstName('Andy'):");
+        log.debug("--------------------------------");
+        log.debug("" + this.repository.findByFirstName("Andy"));
 
-        System.out.println("User found with findByLastName('Smith'):");
-        System.out.println("--------------------------------");
+        log.debug("User found with findByLastName('Smith'):");
+        log.debug("--------------------------------");
         for (User user : this.repository.findByLastName("Smith"))
         {
-            System.out.println(user);
+            log.debug("" + user);
         }
-        System.out.println("--------------------------------");
+        log.debug("--------------------------------");
 
-        System.out.println(this.repository.findUserByUidAndUidSeq("A123456789", "2"));
+        log.debug("" + this.repository.findUserByUidAndUidSeq("A123456789", "2"));
         
-        System.out.println("--------------------------------");
+        log.debug("--------------------------------");
         Sort sort = new Sort(Sort.Direction.DESC, "uidSeq");
         Page<User> p = this.repository.findByLastName("Smith", new PageRequest(2,3, sort));
         for (User user : p)
         {
-            System.out.println(">>" + user);
+            log.debug(">>" + user);
         }
     }
 }
