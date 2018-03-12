@@ -30,6 +30,7 @@ import tw.com.fstop.app.mongodb.entity.User;
 
 public class UserRepositoryImpl implements CustomUserRepository
 {
+    
     @Autowired
     MongoTemplate mongoTemplate;
 
